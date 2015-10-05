@@ -1,0 +1,21 @@
+<div class="center-div">
+    <h2 class="line-wrap">{{nodeModel.heading}}</h2>
+</div>
+<form name="temperatureForm" class="text-center">
+    <fieldset class="questionnaire-fields">
+        <div>
+            <label for="temperature">{{ "TEMPERATURE" | translate }}</label>
+            <input id="temperature"
+                   type="number"
+                   name="temperature"
+                   autocomplete="off"
+                   ng-model="nodeModel.temperatureMeasurement" required />
+        </div>
+        <div ng-show="temperatureForm.temperature.$dirty && temperatureForm.temperature.$invalid">
+            <small class="error-message"
+                   ng-show="temperatureForm.temperature.$error.required">
+                {{ "TEMPERATURE_ERROR_MESSAGE" | translate }}
+            </small>
+        </div>
+    </fieldset>
+</form>

@@ -1,0 +1,39 @@
+<div class="center-div">
+    <h2 class="line-wrap">{{ nodeModel.heading | translate }}</h2>
+</div>
+<div id="deviceHook"></div>
+<div class="center-div">
+    <h4 class="line-wrap">{{ nodeModel.info | translate }}</h4>
+</div>
+<form name="bloodPressureForm" class="text-center">
+    <fieldset class="questionnaire-fields">
+        <div class="block">
+            <label for="blood-pressure-systolic">{{ "BLOOD_PRESSURE_SYSTOLIC" | translate }}</label>
+            <input id="blood-pressure-systolic"
+                   type="number"
+                   name="blood-pressure-systolic"
+                   ng-model="nodeModel.systolic"
+                   disabled />
+        </div>
+        <div class="block">
+            <label for="blood-pressure-diastolic">{{ "BLOOD_PRESSURE_DIASTOLIC" | translate }}</label>
+            <input id="blood-pressure-diastolic"
+                   type="number"
+                   name="blood-pressure-diastolic"
+                   ng-model="nodeModel.diastolic"
+                   disabled />
+        </div>
+        <div class="block">
+            <label for="blood-pressure-pulse">{{ "BLOOD_PRESSURE_PULSE" | translate }}</label>
+            <input id="blood-pressure-pulse"
+                   type="number"
+                   name="blood-pressure-pulse"
+                   ng-model="nodeModel.pulse"
+                   disabled />
+        </div>
+        <div class="block"
+             ng-show="nodeModel.error !== undefined">
+            <small class="error-message">{{ nodeModel.error | translate }}</small>
+        </div>
+    </fieldset>
+</form>

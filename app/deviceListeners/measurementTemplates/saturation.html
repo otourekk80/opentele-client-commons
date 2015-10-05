@@ -1,0 +1,37 @@
+<div class="center-div">
+    <h4 class="line-wrap">{{ model.info | translate }}</h4>
+</div>
+<form name="saturationForm" class="text-center">
+    <fieldset class="questionnaire-fields">
+
+        <div class="block">
+            <label for="saturation-saturation">
+                {{ "SATURATION_SATURATION" | translate }}
+            </label>
+            <input id="saturation-saturation"
+                   type="number"
+                   name="saturation-saturation"
+                   ng-model="model.saturation"
+                   disabled />
+        </div>
+
+        <div class="block">
+            <label for="saturation-pulse">
+                {{ "SATURATION_PULSE" | translate }}
+            </label>
+            <input id="saturation-pulse"
+                   type="number"
+                   name="saturation-pulse"
+                   ng-model="model.pulse"
+                   disabled />
+        </div>
+
+        <div class="block"
+             ng-show="model.error !== undefined">
+            <small class="error-message">
+                {{ model.error | translate }}
+            </small>
+        </div>
+
+    </fieldset>
+</form>

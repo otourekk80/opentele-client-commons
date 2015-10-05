@@ -1,0 +1,17 @@
+# dot-gitignore
+
+# libraries
+bower_components/
+node_modules/
+typings/
+
+# Auto generated
+app/dist/
+app/tmp/
+test_out/
+TESTS-*.xml
+.tscache/
+tscommand-*.txt
+
+# OS/X garbage
+.DS_Store
