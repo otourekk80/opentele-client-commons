@@ -14,9 +14,8 @@ import {
             let nodeModel : NodeModel = {
                 heading: node.text,
                 measurementSelections: [
-                    'URINE_LEVEL_NEGATIVE', 'URINE_LEVEL_PLUS_MINUS',
-                    'URINE_LEVEL_PLUS_ONE', 'URINE_LEVEL_PLUS_TWO',
-                    'URINE_LEVEL_PLUS_THREE'
+                    'URINE_LEVEL_NEGATIVE', 'URINE_LEVEL_PLUS_ONE', 
+                    'URINE_LEVEL_PLUS_TWO', 'URINE_LEVEL_PLUS_THREE'
                 ]
             };
 
@@ -25,11 +24,12 @@ import {
                 nextNodeId: node.nextFail
             };
 
+            let nodeName = node.leukocytesUrine.name;
+            let formName = 'inputForm_' + parserUtils.hashCode(nodeName);
             let rightButton : RightButton = {
                 text: "Next",
                 nextNodeId: node.next,
                 clickAction: (scope) => {
-                    var nodeName = node.leukocytesUrine.name;
                     var radix = 10;
                     scope.outputModel[nodeName] = {
                         name: nodeName,
@@ -37,11 +37,14 @@ import {
                         value: parseInt(scope.nodeModel.measurement, radix)
                     };
                 },
-                validate: (scope) => scope.inputForm.$dirty
+                validate: (scope) => scope[formName].$dirty
             };
 
+            let template = parserUtils.getNodeTemplate('urineLevel.html');
+            template = parserUtils.replaceAll(template, '#form_name#', formName);
+
             let representation : Representation = {
-                nodeTemplate: parserUtils.getNodeTemplate('urineLevel.html'),
+                nodeTemplate: template,
                 nodeModel: nodeModel,
                 leftButton: leftButton,
                 rightButton: rightButton

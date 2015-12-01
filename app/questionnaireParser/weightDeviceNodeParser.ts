@@ -1,4 +1,4 @@
-import { NodeModel, Representation, LeftButton, RightButton, Html5Hook } from 'parserTypes';
+import { NodeModel, Representation, LeftButton, RightButton } from 'parserTypes';
 
 (function() {
     'use strict';
@@ -64,20 +64,20 @@ import { NodeModel, Representation, LeftButton, RightButton, Html5Hook } from 'p
 
         let parseNode = (node, nodeMap, outputModel) => {
 
-            let html5HookDescription : Html5Hook = {
-                elementId: 'deviceHook',
-                modelName: 'nodeModel',
-                callbackName: 'eventListener'
-            };
-
             let nodeModel : NodeModel = {
                 heading: "WEIGHT",
                 info: node.text
             };
 
             let eventListener : Function = weightListener.create(nodeModel);
-            nodeModel.eventListener = eventListener;
-            nativeService.addDeviceListener(WEIGHT, html5HookDescription);
+            let nativeEventCallback : Function = (message) => {
+                if (message.measurementType !== WEIGHT) {
+                    return;
+                }
+                eventListener(message.event);
+            };
+            nativeService.subscribeToMultipleMessages('deviceMeasurementResponse', nativeEventCallback);
+            nativeService.addDeviceListener(WEIGHT);
 
             let representation : Representation = generateRepresentation(node, nodeModel);
             return representation;
@@ -85,6 +85,7 @@ import { NodeModel, Representation, LeftButton, RightButton, Html5Hook } from 'p
 
         return parseNode;
     };
+
     weightDeviceNodeParser.service('weightDeviceNodeParser', weightDeviceNodeParserService);
 
 }());

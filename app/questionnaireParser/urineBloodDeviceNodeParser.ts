@@ -24,12 +24,13 @@ import {
                 text: "Omit",
                 nextNodeId: node.nextFail
             };
-
+            
+            let nodeName = node.bloodUrine.name;
+            let formName = 'inputForm_' + parserUtils.hashCode(nodeName);
             let rightButton : RightButton = {
                 text: "Next",
                 nextNodeId: node.next,
                 clickAction: (scope) => {
-                    var nodeName = node.bloodUrine.name;
                     var radix = 10;
                     scope.outputModel[nodeName] = {
                         name: nodeName,
@@ -37,11 +38,14 @@ import {
                         value: parseInt(scope.nodeModel.measurement, radix)
                     };
                 },
-                validate: (scope) => scope.inputForm.$dirty
+                validate: (scope) => scope[formName].$dirty
             };
 
+            let template = parserUtils.getNodeTemplate('urineLevel.html');
+            template = parserUtils.replaceAll(template, '#form_name#', formName);
+
             let representation : Representation = {
-                nodeTemplate: parserUtils.getNodeTemplate('urineLevel.html'),
+                nodeTemplate: template,
                 nodeModel: nodeModel,
                 leftButton: leftButton,
                 rightButton: rightButton

@@ -1,0 +1,25 @@
+<div class="center-div">
+    <h4 class="line-wrap">{{ model.info | translate }}</h4>
+</div>
+<form name="lungFunctionForm" class="text-center">
+    <fieldset class="questionnaire-fields">
+
+        <div class="block">
+            <label for="lung-function-fev1">
+                {{ "LUNG_FUNCTION_FEV1" | translate }}
+            </label>
+            <input id="lung-function-fev1"
+                   type="number"
+                   name="lung-function-fev1"
+                   ng-model="model.fev1"
+                   disabled />
+        </div>
+
+        <div class="block"
+             ng-show="model.error !== undefined">
+            <small class="error-message">
+                {{ model.error | translate }}
+            </small>
+        </div>
+    </fieldset>
+</form>

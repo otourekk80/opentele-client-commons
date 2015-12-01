@@ -23,11 +23,12 @@ import { Representation, NodeModel, LeftButton, RightButton } from 'parserTypes'
                 nextNodeId: node.nextFail
             };
 
+            let nodeName = node.urine.name;
+            let formName = 'inputForm_' + parserUtils.hashCode(nodeName);
             let rightButton = {
                 text: "Next",
                 nextNodeId: node.next,
                 clickAction: (scope) => {
-                    let nodeName = node.urine.name;
                     let radix = 10;
                     scope.outputModel[nodeName] = {
                         name: nodeName,
@@ -35,11 +36,14 @@ import { Representation, NodeModel, LeftButton, RightButton } from 'parserTypes'
                         value: parseInt(scope.nodeModel.measurement, radix)
                     };
                 },
-                validate: (scope) => scope.inputForm.$dirty
+                validate: (scope) => scope[formName].$dirty
             };
 
+            let template = parserUtils.getNodeTemplate('urineLevel.html');
+            template = parserUtils.replaceAll(template, '#form_name#', formName);
+
             let representation : Representation = {
-                nodeTemplate: parserUtils.getNodeTemplate('urineLevel.html'),
+                nodeTemplate: template,
                 nodeModel: nodeModel,
                 leftButton: leftButton,
                 rightButton: rightButton

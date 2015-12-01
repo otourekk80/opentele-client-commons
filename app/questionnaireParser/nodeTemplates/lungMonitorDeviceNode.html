@@ -5,14 +5,14 @@
 <div class="center-div">
     <h4 class="line-wrap">{{ nodeModel.info | translate }}</h4>
 </div>
-<form name="temperatureForm" class="text-center">
+<form name="lungFunctionForm" class="text-center">
     <fieldset class="questionnaire-fields">
         <div class="block">
-            <label for="temperature-measurement">{{ "TEMPERATURE" | translate }}</label>
-            <input id="temperature-measurement"
+            <label for="lung-function-fev1">{{ "LUNG_FUNCTION_FEV1" | translate }}</label>
+            <input id="lung-function-fev1"
                    type="number"
-                   name="temperature-measurement"
-                   ng-model="nodeModel.temperature"
+                   name="lung-function-fev1"
+                   ng-model="nodeModel.fev1"
                    disabled />
         </div>
         <div class="block"

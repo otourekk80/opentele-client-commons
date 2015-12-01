@@ -2,7 +2,7 @@
     "rules": {
         "class-name": true,
         "curly": true,
-        "eofline": true,
+        "eofline": false,
         "indent": [true, 4],
         "label-position": true,
         "label-undefined": true,

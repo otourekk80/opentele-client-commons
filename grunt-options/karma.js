@@ -3,6 +3,11 @@
 
     module.exports = function(environment) {
 
+        var preprocessors = {};
+        environment.appAreas.forEach(function(area) {
+            preprocessors['app/tmp/' + area + '/**/*.js'] = ['coverage'];
+        });
+
         return {
             options: {
                 configFile: 'karma.conf.js'
@@ -19,10 +24,7 @@
             ciUnit: {
                 browsers: ['PhantomJS'],
                 singleRun: true,
-                preprocessors: {
-                    'app/tmp/questionnaireParser/**/*.js': ['coverage'],
-                    'app/tmp/deviceListeners/**/*.js': ['coverage']
-                },
+                preprocessors: preprocessors,
                 reporters: [
                     'progress', 'junit', 'coverage', 'threshold'
                 ]

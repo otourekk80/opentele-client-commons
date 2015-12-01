@@ -2,16 +2,19 @@
     "use strict";
 
     module.exports = function(environment) {
+        
+        var files = {};
+        environment.appAreas.forEach(function(area) {
+            var fileName = 'dist/' + area +'.js'; 
+            files[fileName] = [fileName];
+        });
 
         return {
             options: {
                 add: true
             },
             opentele: {
-                files: {
-                    'dist/deviceListeners.js': ['dist/deviceListeners.js'],
-                    'dist/questionnaireParser.js': ['dist/questionnaireParser.js']
-                }
+                files: files
             }
         };
     };

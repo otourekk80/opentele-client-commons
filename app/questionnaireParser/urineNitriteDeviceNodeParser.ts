@@ -23,6 +23,8 @@ import {
                 nextNodeId: node.nextFail
             };
 
+            let nodeName = node.nitriteUrine.name;
+            let formName = 'inputForm_' + parserUtils.hashCode(nodeName);
             let rightButton : RightButton = {
                 text: "Next",
                 nextNodeId: node.next,
@@ -35,11 +37,14 @@ import {
                         value: parseInt(scope.nodeModel.measurement, radix)
                     };
                 },
-                validate: (scope) => scope.inputForm.$dirty
+                validate: (scope) => scope[formName].$dirty
             };
 
+            let template = parserUtils.getNodeTemplate('urineLevel.html');
+            template = parserUtils.replaceAll(template, '#form_name#', formName);
+
             let representation : Representation = {
-                nodeTemplate: parserUtils.getNodeTemplate('urineLevel.html'),
+                nodeTemplate: template,
                 nodeModel: nodeModel,
                 leftButton: leftButton,
                 rightButton: rightButton

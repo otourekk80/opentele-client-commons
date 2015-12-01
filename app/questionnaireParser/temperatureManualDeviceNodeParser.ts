@@ -2,7 +2,7 @@ import { Representation, NodeModel, LeftButton, RightButton } from 'parserTypes'
 
 (function() {
     'use strict';
-
+                                                      
     let temperatureDeviceNodeParser = angular.module('opentele-commons.questionnaireParser.temperatureManualDeviceNodeParser', []);
 
     let temperatureService = ($templateCache, parserUtils) => {

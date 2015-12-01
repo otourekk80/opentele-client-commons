@@ -12,7 +12,9 @@
                     'ts',
                     'newer:html2js:deviceListeners',
                     'newer:html2js:questionnaireParser',
-                    'karma:unit'
+                    'karma:unit',
+                    'concat:dist',
+                    'ngAnnotate:opentele'
                 ],
                 options: {
                     atBegin: true

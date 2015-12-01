@@ -9,7 +9,8 @@
         beforeEach(module(function($provide) {
 
             var nativeService = {
-                addDeviceListener: function(measurementType, callbackName) {}
+                addDeviceListener: function(measurementType) {},
+                subscribeToMultipleMessages: function(messageType, callback) {}
             };
             $provide.value('nativeService', nativeService);
 

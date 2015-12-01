@@ -25,8 +25,3 @@ export interface RightButton {
     clickAction?: Function;
 }
 
-export interface Html5Hook {
-    elementId: string;
-    modelName: string;
-    callbackName: string;
-}

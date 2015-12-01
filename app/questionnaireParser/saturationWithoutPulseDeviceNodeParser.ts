@@ -1,4 +1,4 @@
-import { NodeModel, Representation, LeftButton, RightButton, Html5Hook } from 'parserTypes';
+import { NodeModel, Representation, LeftButton, RightButton } from 'parserTypes';
 
 (function() {
     'use strict';
@@ -64,19 +64,19 @@ import { NodeModel, Representation, LeftButton, RightButton, Html5Hook } from 'p
 
         let parseNode = (node, nodeMap, outputModel) => {
 
-            let html5HookDescription : Html5Hook = {
-                elementId: 'deviceHook',
-                modelName: 'nodeModel',
-                callbackName: 'eventListener'
-            };
-
             let nodeModel : NodeModel = {
                 heading: node.text
             };
 
             let eventListener : Function = saturationListener.create(nodeModel, true);
-            nodeModel.eventListener = eventListener;
-            nativeService.addDeviceListener(SATURATION, html5HookDescription);
+            let nativeEventCallback : Function = (message) => {
+                if (message.measurementType !== SATURATION) {
+                    return;
+                }
+                eventListener(message.event);
+            };
+            nativeService.subscribeToMultipleMessages('deviceMeasurementResponse', nativeEventCallback);
+            nativeService.addDeviceListener(SATURATION);
 
             let representation : Representation = generateRepresentation(node, nodeModel);
             return representation;

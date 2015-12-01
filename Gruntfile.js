@@ -12,9 +12,17 @@
 
         var appTsFiles = [
             'app/questionnaireParser/**/*.ts',
-            'app/deviceListeners/**/*.ts'
+            'app/deviceListeners/**/*.ts',
+            'app/native/**/*.ts'
         ];
         environment.appTsFiles = appTsFiles;
+
+        var appAreas = [
+            'questionnaireParser',
+            'deviceListeners',
+            'native'
+        ];
+        environment.appAreas = appAreas;
 
         var bowerComponentsPath = 'app/bower_components/';
 
@@ -89,7 +97,7 @@
                 'watch'
             ]);
         grunt.registerTask('dev', devConfig);
-        
+
         var debugConfig = cleaningTasks
             .concat([
                 'newer:tslint',
@@ -99,7 +107,7 @@
                 'karma:unitDebug'
             ]);
         grunt.registerTask('dev-debug', debugConfig);
-        
+
         var testConfig = cleaningTasks
             .concat(typeScriptTasks)
             .concat(html2JsTasks)

@@ -47,12 +47,6 @@ export interface WeightEvent extends Event {
 
 export type Weight = number;
 
-export interface TemperatureEvent extends Event {
-    value: Temperature;
-}
-
-export type Temperature = number;
-
 export interface DeviceEventHandler {
     (model: any, event : MeasurementEvent): void;
 }

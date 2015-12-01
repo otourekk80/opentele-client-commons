@@ -7,12 +7,11 @@ import {
     'use strict';
 
     let listeners = angular.module('opentele-commons.deviceListeners', [
-        'opentele-commons.deviceListeners.templates',
         'opentele-commons.deviceListeners.bloodPressure',
-        'opentele-commons.deviceListeners.weight',
-        'opentele-commons.deviceListeners.temperature',
         'opentele-commons.deviceListeners.saturation',
-        'opentele-commons.deviceListeners.saturationWithoutPulse'
+        'opentele-commons.deviceListeners.saturationWithoutPulse',
+        'opentele-commons.deviceListeners.weight',
+        'opentele-commons.deviceListeners.templates'
     ]);
 
     listeners.constant('listenerConstants', {

@@ -43,9 +43,8 @@
                 .toMatch(/Indtast resultatet fra din urinundersøgelse/);
             expect(parsed.nodeModel.measurement).not.toBeDefined();
             expect(parsed.nodeModel.measurementSelections).toEqual([
-                'URINE_LEVEL_NEGATIVE', 'URINE_LEVEL_PLUS_MINUS',
-                'URINE_LEVEL_PLUS_ONE', 'URINE_LEVEL_PLUS_TWO',
-                'URINE_LEVEL_PLUS_THREE'
+                'URINE_LEVEL_NEGATIVE', 'URINE_LEVEL_PLUS_ONE', 
+                'URINE_LEVEL_PLUS_TWO', 'URINE_LEVEL_PLUS_THREE'
             ]);
             expect(templateCache.get.mostRecentCall.args[0]).toMatch(/urineLevel.html/);
             expect(parsed.leftButton).toBeDefined();
