@@ -1,5 +1,6 @@
 {
   "name": "opentele-client-commons",
+  "version": "1.0.0",
   "description": "Common functionality shared across HTML5 clients",
   "private": true,
   "devDependencies": {
